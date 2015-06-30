@@ -1,0 +1,37 @@
+package com.beryl.maven;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Window;
+import android.widget.Button;
+import android.view.View;
+import android.view.View.OnClickListener;
+
+
+
+public class MainActivity extends Activity {
+	private Game game;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main ); // set the content view or our widget lookups will fail
+        
+        game = (Game)findViewById(R.id.game);
+        
+        final Button btnRestart = (Button)findViewById(R.id.btnRestart);
+        btnRestart.setOnClickListener(new OnClickListener()
+        {	
+			@Override
+			public void onClick(View v)
+			{
+				game.reset();
+				game.invalidate();
+			}
+		});        
+    }
+        
+}
